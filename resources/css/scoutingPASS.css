@@ -9,11 +9,10 @@
 html, body{
     height: 98vw;
     width: 98vw;
-    margin: 0;
+    margin: auto;
     padding: 0;
     color: blue;
     background-color: black;
-    text-align: center;
 }
 
 #prematch_table, #postmatch_table {
