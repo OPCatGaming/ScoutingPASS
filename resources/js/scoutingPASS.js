@@ -284,6 +284,12 @@ function addClickableImage(table, idx, name, data) {
   var canvas = document.createElement('canvas');
   //canvas.onclick = onFieldClick;
   canvas.setAttribute("onclick", "onFieldClick(event)");
+  canvas.onmousedown = () => {
+    console.log("down");
+  }
+  canvas.onmousemove = () => {
+    console.log("move")
+  }
   canvas.setAttribute("class", "field-image-src");
   canvas.setAttribute("id", "canvas_" + data.code);
   canvas.innerHTML = "No canvas support";
