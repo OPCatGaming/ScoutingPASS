@@ -77,14 +77,13 @@ html, body{
     height: 98%;
     min-height: 98%;
     width: 98vw;
-    margin: auto;
     position: absolute;
     left: 0;
     top: 0;
     color: white;
-    background-color: green;
+    background-color: black;
     font-family : -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
-    text-align: justify;
+    text-align: center;
 }
 
 #prematch{
