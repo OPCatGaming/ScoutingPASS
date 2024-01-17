@@ -88,11 +88,27 @@ var config_data = `
     }
   ],
   "auton": [
+  { "name": "Team Number",
+      "code": "t",
+      "type": "number"
+    },
   ],
   "teleop": [
+  { "name": "Team Number",
+      "code": "t",
+      "type": "number"
+    },
   ],
   "endgame": [
+  { "name": "Team Number",
+      "code": "t",
+      "type": "number"
+    },
   ],
   "postmatch": [
+  { "name": "Team Number",
+      "code": "t",
+      "type": "number"
+    },
   ]
 }`;
