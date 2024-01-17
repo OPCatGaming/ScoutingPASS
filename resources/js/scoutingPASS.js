@@ -1078,6 +1078,8 @@ function onFieldClick(event) {
   let target = event.target;
   let base = getIdBase(target.id);
 
+  console.log("a");
+  
   //Resolution height and width (e.g. 52x26)
   let resX = 12;
   let resY = 6;
