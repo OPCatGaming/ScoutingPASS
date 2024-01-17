@@ -199,6 +199,7 @@ h2{
 #prematch_table{
     font: Alexis;
     text-align: center;
+    margin:auto;
 }
 
 
@@ -244,6 +245,7 @@ input {
     text-align: center;
     color: black;
     background-color: white;
+    margin:auto;
 }
 
 #data {
