@@ -11,8 +11,8 @@ html, body{
     width: 98vw;
     margin: auto;
     padding: 0;
-    color: blue;
-    background-color: black;
+    color: white;
+    background-color: green;
 }
 
 #prematch_table, #postmatch_table {
