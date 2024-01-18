@@ -285,7 +285,9 @@ function addClickableImage(table, idx, name, data) {
   var canvas = document.createElement('canvas');
 
   // Handle the mouse events on the image canvas.
+  // Not very efficient, but I'm not sure if we are even going to use this one, so no need right now.
   canvas.onmousedown = (e) => {
+    onFieldClick(e);
     mouseDownCanvas = true;
   }
   canvas.onmouseup = (e) => {
