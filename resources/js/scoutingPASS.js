@@ -13,6 +13,7 @@ var slide = 0;
 var enableGoogleSheets = false;
 var pitScouting = false;
 var checkboxAs = 'YN';
+var mouseDownCanvas = false;
 
 // Options
 var options = {
@@ -285,13 +286,13 @@ function addClickableImage(table, idx, name, data) {
 
   // Handle the mouse events on the image canvas.
   canvas.onmousedown = () => {
-    console.log("down");
+    mouseDownCanvas = true;
   }
   canvas.onmouseup = (e) => {
     onFieldClick(e);
   }
   canvas.onmousemove = () => {
-    console.log("move");
+    if (mouseDownCanvas) { onFieldClick(e); }
   }
   
   canvas.setAttribute("class", "field-image-src");
