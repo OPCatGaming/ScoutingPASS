@@ -290,6 +290,7 @@ function addClickableImage(table, idx, name, data) {
   }
   canvas.onmouseup = (e) => {
     onFieldClick(e);
+    mouseDownCanvas = false;
   }
   canvas.onmousemove = (e) => {
     if (mouseDownCanvas) { onFieldClick(e); }
