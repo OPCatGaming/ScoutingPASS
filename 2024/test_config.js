@@ -10,7 +10,7 @@ var config_data = `
       "type": "text",
       "utype": "scouter",
       "size": 5,
-      "maxSize": 5,
+      "maxSize": 10,
       "required": "true"
     },
     { "name": "Event",
