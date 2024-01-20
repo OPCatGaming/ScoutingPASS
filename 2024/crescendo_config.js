@@ -5,7 +5,7 @@ var config_data = `
   "page_title": "Crescendo",
   "checkboxAs": "10",
   "prematch": [
-    { "name": "Scouter Cheese",
+    { "name": "Scouter's Name",
       "code": "s",
       "type": "scouter",
       "size": 5,
