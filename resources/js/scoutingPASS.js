@@ -181,7 +181,7 @@ function addCounter(table, idx, name, data) {
     inp.setAttribute("name", data.code);
   }
   inp.setAttribute("style", "background-color: black; color: white;border: none; text-align: center;");
-  inp.setAttribute("disabled", "");
+  inp.setAttribute("disabled", "true");
   inp.setAttribute("value", 0);
   inp.setAttribute("size", 2);
   inp.setAttribute("maxLength", 2);
