@@ -24,7 +24,7 @@ var options = {
 
 // Must be filled in: e=event, m=match#, l=level(q,qf,sf,f), t=team#, r=robot(r1,r2,b1..), s=scouter
 //var requiredFields = ["e", "m", "l", "t", "r", "s", "as"];
-var requiredFields = ["event", "match-num", "match-type", "alliance-color", "scout-name", "auto-start", "team-num"];
+var requiredFields = ["event", "match_num", "match_type", "alliance_color", "scout_name", "auto_start", "team_num"];
 
 function addTimer(table, idx, name, data) {
   var row = table.insertRow(idx);
@@ -793,18 +793,18 @@ function configure() {
   return 0
 }
 
-function getRobot(){
-  return document.forms.scoutingForm.r.value;
+function getAllianceColor(){
+  return document.forms.scoutingForm.alliance_color.value;
 }
 
 
 function resetRobot() {
-for ( rb of document.getElementsByName('r')) { rb.checked = false };
+for ( rb of document.getElementsByName('alliance_color')) { rb.checked = false };
 }
 
 
 function getLevel(){
-return document.forms.scoutingForm.l.value
+return document.forms.scoutingForm.match_type.value;
 }
 
 
@@ -1223,7 +1223,7 @@ function getMatch(matchKey) {
 }
 
 function getCurrentTeamNumberFromRobot() {
-  if (getRobot() != "" && typeof getRobot() !== 'undefined' && getCurrentMatch() != "") {
+  if (getAllianceColor() != "" && typeof getRobot() !== 'undefined' && getCurrentMatch() != "") {
     if (getRobot().charAt(0) == "r") {
       return getCurrentMatch().red.team_keys[parseInt(getRobot().charAt(1)) - 1]
     } else if (getRobot().charAt(0) == "b") {
