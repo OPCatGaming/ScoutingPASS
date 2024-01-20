@@ -631,8 +631,8 @@ function addDropdown(table, idx, name, data) {
       var inp = document.createElement("option");
       inp.setAttribute("id", "input_" + data.code + "_" + c);
       
-      inp.setAttribute("value", data.choices[c]);
-      inp.setAttribute("text", data.choices[c]);
+      inp.setAttribute("value", "AWDIJAWD");
+      inp.setAttribute("text", "AOIJWDOIAW");
       dropdown.appendChild(inp);
     });
   }
@@ -640,6 +640,7 @@ function addDropdown(table, idx, name, data) {
 
   if (data.hasOwnProperty('defaultValue')) {
     dropdown.setAttribute("value", data.defaultValue);
+    dropdown.selectedIndex = dropdowns.options.indexOf(data.defaultValue);
   }
 
   cell2.appendChild(dropdown);
