@@ -467,7 +467,7 @@ function addText(table, idx, name, data) {
 
 function onChangeRange(event, updateMStart = false) {
     let range = event.target;
-    console.log(event.target.text);
+    console.log(event.target);
     let numText = Number(range.text);
     if (range.min > numText) {
       event.target.text = range.min;
