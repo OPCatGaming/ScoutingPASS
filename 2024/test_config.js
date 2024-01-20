@@ -8,6 +8,7 @@ var config_data = `
     { "name": "Scouter's Name",
       "code": "s",
       "type": "text",
+      "utype": "scouter",
       "size": 5,
       "maxSize": 5,
       "required": "true"
@@ -15,12 +16,14 @@ var config_data = `
     { "name": "Event",
       "code": "e",
       "type": "text",
+      "utype": "event",
       "defaultValue": "2023tnkn",
       "required": "true"
     },
     { "name": "Match Type",
       "code": "l",
       "type": "radio",
+      "utype": "level",
       "choices": {
         "quals": "Quals<br>",
         "semis": "Semifinals<br>",
@@ -32,6 +35,7 @@ var config_data = `
     { "name": "Match #",
       "code": "m",
       "type": "counter",
+      "utype": "match",
       "min": 1,
       "max": 150,
       "required": "true"
@@ -39,6 +43,7 @@ var config_data = `
     { "name": "Alliance Color",
       "code": "ac",
       "type": "radio",
+      "utype": "robot",
       "choices": {
         "red": "Red",
         "blue": "Blue<br>"
@@ -48,6 +53,7 @@ var config_data = `
     { "name": "Team #",
       "code": "t",
       "type": "counter",
+      "utype": "team",
       "min": 1,
       "max": 99999
     },
