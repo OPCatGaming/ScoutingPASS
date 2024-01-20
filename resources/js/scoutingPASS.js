@@ -883,22 +883,22 @@ function getData(dataFormat) {
   }
 }
 
-function updateQRHeader() {
-  // let str = 'Event: !EVENT! Match: !MATCH! Robot: !ROBOT! Team: !TEAM!';
+// function updateQRHeader() {
+//   // let str = 'Event: !EVENT! Match: !MATCH! Robot: !ROBOT! Team: !TEAM!';
 
-  // if (!pitScouting) {
-  //   str = str
-  //     .replace('!EVENT!', document.getElementById("input_e").value)
-  //     .replace('!MATCH!', document.getElementById("input_m").value)
-  //     .replace('!ROBOT!', document.getElementById("display_r").value)
-  //     .replace('!TEAM!', document.getElementById("input_t").value);
-  // } else {
-  //   str = 'Pit Scouting - Team !TEAM!'
-  //     .replace('!TEAM!', document.getElementById("input_t").value);
-  // }
+//   // if (!pitScouting) {
+//   //   str = str
+//   //     .replace('!EVENT!', document.getElementById("input_e").value)
+//   //     .replace('!MATCH!', document.getElementById("input_m").value)
+//   //     .replace('!ROBOT!', document.getElementById("display_r").value)
+//   //     .replace('!TEAM!', document.getElementById("input_t").value);
+//   // } else {
+//   //   str = 'Pit Scouting - Team !TEAM!'
+//   //     .replace('!TEAM!', document.getElementById("input_t").value);
+//   // }
 
-  // document.getElementById("display_qr-info").textContent = str;
-}
+//   // document.getElementById("display_qr-info").textContent = str;
+// }
 
 
 function qr_regenerate() {
@@ -1222,51 +1222,51 @@ function getMatch(matchKey) {
   return "";
 }
 
-function getCurrentTeamNumberFromRobot() {
-  if (getAllianceColor() != "" && typeof getRobot() !== 'undefined' && getCurrentMatch() != "") {
-    if (getRobot().charAt(0) == "r") {
-      return getCurrentMatch().red.team_keys[parseInt(getRobot().charAt(1)) - 1]
-    } else if (getRobot().charAt(0) == "b") {
-      return getCurrentMatch().blue.team_keys[parseInt(getRobot().charAt(1)) - 1]
-    }
-  }
-}
+// function getCurrentTeamNumberFromRobot() {
+//   if (getAllianceColor() != "" && typeof getRobot() !== 'undefined' && getCurrentMatch() != "") {
+//     if (getRobot().charAt(0) == "r") {
+//       return getCurrentMatch().red.team_keys[parseInt(getRobot().charAt(1)) - 1]
+//     } else if (getRobot().charAt(0) == "b") {
+//       return getCurrentMatch().blue.team_keys[parseInt(getRobot().charAt(1)) - 1]
+//     }
+//   }
+// }
 
-function getCurrentMatchKey() {
-  return document.getElementById("input_e").value + "_" + getLevel() + document.getElementById("input_m").value;
-}
+// function getCurrentMatchKey() {
+//   return document.getElementById("input_e").value + "_" + getLevel() + document.getElementById("input_m").value;
+// }
 
-function getCurrentMatch() {
-  return getMatch(getCurrentMatchKey());
-}
+// function getCurrentMatch() {
+//   return getMatch(getCurrentMatchKey());
+// }
 
-function updateMatchStart(event) {
-  if ((getCurrentMatch() == "") ||
-    (!teams)) {
-    console.log("No match or team data.");
-    return;
-  }
-  if (event.target.id.startsWith("input_r")) {
-    document.getElementById("input_t").value = getCurrentTeamNumberFromRobot().replace("frc", "");
-    onTeamnameChange();
-  }
-  if (event.target.id == "input_m") {
-    if (getRobot() != "" && typeof getRobot()) {
-      document.getElementById("input_t").value = getCurrentTeamNumberFromRobot().replace("frc", "");
-      onTeamnameChange();
-    }
-  }
-}
+// function updateMatchStart(event) {
+//   if ((getCurrentMatch() == "") ||
+//     (!teams)) {
+//     console.log("No match or team data.");
+//     return;
+//   }
+//   if (event.target.id.startsWith("input_r")) {
+//     document.getElementById("input_t").value = getCurrentTeamNumberFromRobot().replace("frc", "");
+//     onTeamnameChange();
+//   }
+//   if (event.target.id == "input_m") {
+//     if (getRobot() != "" && typeof getRobot()) {
+//       document.getElementById("input_t").value = getCurrentTeamNumberFromRobot().replace("frc", "");
+//       onTeamnameChange();
+//     }
+//   }
+// }
 
-function onTeamnameChange(event) {
-  var newNumber = document.getElementById("input_t").value;
-  var teamLabel = document.getElementById("teamname-label");
-  if (newNumber != "") {
-    teamLabel.innerText = getTeamName(newNumber) != "" ? "You are scouting " + getTeamName(newNumber) : "That team isn't playing this match, please double check to verify correct number";
-  } else {
-    teamLabel.innerText = "";
-  }
-}
+// function onTeamnameChange(event) {
+//   var newNumber = document.getElementById("input_t").value;
+//   var teamLabel = document.getElementById("teamname-label");
+//   if (newNumber != "") {
+//     teamLabel.innerText = getTeamName(newNumber) != "" ? "You are scouting " + getTeamName(newNumber) : "That team isn't playing this match, please double check to verify correct number";
+//   } else {
+//     teamLabel.innerText = "";
+//   }
+// }
 
 /**
  * adds to the number in innerHTML of the value tag.
@@ -1417,7 +1417,7 @@ function copyData(){
 window.onload = function () {
   let ret = configure();
   if (ret != -1) {
-    let ece = document.getElementById("input_e");
+    let ece = document.getElementById("input_event");
     let ec = null;
     if (ece != null) {
       ec = ece.value;
@@ -1425,6 +1425,7 @@ window.onload = function () {
     if (ec != null) {
       getTeams(ec);
       getSchedule(ec);
+      console.log("Loaded teams and schedule!");
     }
     this.drawFields();
     if (enableGoogleSheets) {
