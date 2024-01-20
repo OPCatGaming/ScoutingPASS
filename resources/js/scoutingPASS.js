@@ -487,9 +487,20 @@ function addNumber(table, idx, name, data) {
   } else {
     inp.setAttribute("name", data.code);
   }
-  if (data.hasOwnProperty('utype') && 
-      ((data.utype == 'team') || (data.utype == 'match'))) {
-    inp.setAttribute("onchange", "updateMatchStart(event)");
+  if (data.hasOwnProperty('utype')) {
+    console.log("aoijawoidjaoijwdoijawwd");
+    if (data.utype == 'team') {
+      inp.onchange = (e) => {
+        console.log(inp.text);
+        updateMatchStart(event);
+      };
+    }
+    if (data.utype == 'match') {
+      inp.onchange = () => {
+        console.log(inp.text);
+        updateMatchStart(event);
+      };
+    }
   }
   if (data.hasOwnProperty('min')) {
     inp.setAttribute("min", data.min);
