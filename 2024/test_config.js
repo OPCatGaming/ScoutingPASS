@@ -36,8 +36,8 @@ var config_data = `
       "max": 150,
       "required": "true"
     },
-    { "name": "Robot",
-      "code": "aColor",
+    { "name": "Alliance Color",
+      "code": "ac",
       "type": "radio",
       "choices": {
         "red": "Red",
