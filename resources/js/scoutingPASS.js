@@ -468,13 +468,15 @@ function addText(table, idx, name, data) {
 function onChangeRange(event, updateMStart = false) {
     let range = event.target;
     let numText = Number(range.value);
+    // Eliminate decimals
+    event.target.value = trunc(range.value);
     if (range.min > numText) {
       event.target.value = range.min;
     }
     if (range.max < numText) {
       event.target.value = range.max;
     }
-
+  
     if (updateMStart) { updateMatchStart(event); }
   }
 
