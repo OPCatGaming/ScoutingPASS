@@ -599,6 +599,54 @@ function addRadio(table, idx, name, data) {
   return idx + 1;
 }
 
+function addDropdown(table, idx, name, data) {
+  var row = table.insertRow(idx);
+  var cell1 = row.insertCell(0);
+  cell1.classList.add("title");
+  if (!data.hasOwnProperty('code')) {
+    cell1.innerHTML = `Error: No code specified for ${name}`;
+    return idx + 1;
+  }
+  var cell2 = row.insertCell(1);
+  cell1.innerHTML = name + '&nbsp;';
+  if (data.hasOwnProperty('tooltip')) {
+    cell1.setAttribute("title", data.tooltip);
+  }
+  cell2.classList.add("field");
+
+  var dropdown = document.createElement("select");
+  dropdown.setAttribute("id", "input_" + data.code);
+  cell2.appendChild(dropdown);
+  
+  if (data.type == 'event') {
+    dropdown.setAttribute("onchange", "() => console.log('a')");
+  }
+  
+  if (data.hasOwnProperty('defaultValue')) {
+    // Set defualt val of dropdown heer
+  }
+  if (data.hasOwnProperty('choices')) {
+    keys = Object.keys(data.choices);
+    keys.forEach(c => {
+      var inp = document.createElement("option");
+      inp.setAttribute("id", "input_" + data.code + "_" + c);
+      
+      inp.setAttribute("value", data.choices[c]);
+      inp.setAttribute("text", data.choices[c]);
+      dropdown.appendChild(inp);
+    });
+  }
+  
+
+  if (data.hasOwnProperty('defaultValue')) {
+    dropdown.setAttribute("value", data.defaultValue);
+  }
+
+  cell2.appendChild(dropdown);
+  
+  return idx + 1;
+}
+
 function addCheckbox(table, idx, name, data) {
   var row = table.insertRow(idx);
   var cell1 = row.insertCell(0);
@@ -661,15 +709,11 @@ function addElement(table, idx, data) {
     (data.type == 'text')
   ) {
     idx = addText(table, idx, name, data);
-  } else if ((data.type == 'level') ||
-    (data.type == 'radio') ||
-    (data.type == 'robot')
-  ) {
+  } else if (data.type == 'radio') {
     idx = addRadio(table, idx, name, data);
-  } else if ((data.type == 'match') ||
-    (data.type == 'team') ||
-    (data.type == 'number')
-  ) {
+  } else if (data.type == 'dropdown') {
+    idx = addDropdown(table, idk, name, data);
+  } else if (data.type == 'number') {
     idx = addNumber(table, idx, name, data);
   } else if ((data.type == 'field_image') ||
     (data.type == 'clickable_image')) {
@@ -932,11 +976,11 @@ function clearForm() {
     swipePage(-5);
 
     // Increment match
-    match = parseInt(document.getElementById("input_m").value)
+    match = parseInt(document.getElementById("input_match_num").value)
     if (match == NaN) {
-      document.getElementById("input_m").value = ""
+      document.getElementById("input_match_num").value = ""
     } else {
-      document.getElementById("input_m").value = match + 1
+      document.getElementById("input_match_num").value = match + 1
     }
 
     // Robot
