@@ -42,7 +42,7 @@ var config_data = `
     },
     { "name": "Alliance Color",
       "code": "alliance_color",
-      "type": "radio",
+      "type": "dropdown",
       "utype": "robot",
       "choices": {
         "red": "Red",
