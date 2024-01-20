@@ -24,7 +24,7 @@ var options = {
 
 // Must be filled in: e=event, m=match#, l=level(q,qf,sf,f), t=team#, r=robot(r1,r2,b1..), s=scouter
 //var requiredFields = ["e", "m", "l", "t", "r", "s", "as"];
-var requiredFields = ["event", "match-num", "match-type", "alliance-color", "scout-name", "auto-start"];
+var requiredFields = ["e", "m", "l", "ac", "s", "as"];
 
 function addTimer(table, idx, name, data) {
   var row = table.insertRow(idx);
