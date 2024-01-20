@@ -36,12 +36,16 @@ var config_data = `
       "max": 150,
       "required": "true"
     },
-    { "name": "Alliance",
+    { "name": "Robot",
       "code": "r",
       "type": "robot",
       "choices": {
-        "red": "Red",
-        "blue": "Blue<br>",
+        "r1": "Red-1",
+        "b1": "Blue-1<br>",
+        "r2": "Red-2",
+        "b2": "Blue-2<br>",
+        "r3": "Red-3",
+        "b3": "Blue-3<br>"
       },
       "required":"true"
     },
