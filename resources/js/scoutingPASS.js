@@ -469,7 +469,7 @@ function onChangeRange(event, updateMStart = false) {
     let range = event.target;
     let numText = Number(range.value);
     // Eliminate decimals
-    event.target.value = trunc(range.value);
+    event.target.value = Math.trunc(range.value);
     if (range.min > numText) {
       event.target.value = range.min;
     }
