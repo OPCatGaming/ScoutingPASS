@@ -712,7 +712,7 @@ function addElement(table, idx, data) {
   } else if (data.type == 'radio') {
     idx = addRadio(table, idx, name, data);
   } else if (data.type == 'dropdown') {
-    idx = addDropdown(table, idk, name, data);
+    idx = addDropdown(table, idx, name, data);
   } else if (data.type == 'number') {
     idx = addNumber(table, idx, name, data);
   } else if ((data.type == 'field_image') ||
