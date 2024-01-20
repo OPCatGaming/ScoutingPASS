@@ -476,8 +476,6 @@ function onChangeRange(event, updateMStart = false) {
     if (range.max < numText) {
       event.target.value = range.max;
     }
-  
-    if (updateMStart) { updateMatchStart(event); }
   }
 
 function addNumber(table, idx, name, data) {
@@ -556,11 +554,11 @@ function addRadio(table, idx, name, data) {
     cell1.setAttribute("title", data.tooltip);
   }
   cell2.classList.add("field");
-  if ((data.type == 'level') ||
-    (data.type == 'robot')
-  ) {
-    cell2.setAttribute("onchange", "updateMatchStart(event)");
-  }
+  // if ((data.type == 'level') ||
+  //   (data.type == 'robot')
+  // ) {
+  //   cell2.setAttribute("onchange", "updateMatchStart(event)");
+  // }
   var checked = null
   if (data.hasOwnProperty('defaultValue')) {
     checked = data.defaultValue;
@@ -916,7 +914,7 @@ function qr_regenerate() {
   // Regenerate QR Code
   qr.makeCode(data)
 
-  updateQRHeader()
+  //updateQRHeader()
   return true
 }
 
