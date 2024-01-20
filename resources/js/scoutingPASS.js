@@ -487,10 +487,24 @@ function addNumber(table, idx, name, data) {
   } else {
     inp.setAttribute("name", data.code);
   }
-  if (data.hasOwnProperty('utype') && (data.utype == 'match' || data.utype == 'team')) {
-    console.log("aoijawoidjaoijwdoijawwd");
-    inp.setAttribute("onchange", "updateMatchStart(event)");
+
+  function onChangeRange(event) {
+    let range = event.target;
+    let numText = Number(range.text);
+    if (range.min > numText) {
+      event.target.text = range.min;
+    }
+    if (range.max < numText) {
+      event.target.text = range.max;
+    }
+    
+    updateMatchStart(event);
   }
+  
+  if (data.hasOwnProperty('utype') && (data.utype == 'match' || data.utype == 'team')) {
+    inp.setAttribute("onchange", "onChangeRange(event)");
+  }
+  
   if (data.hasOwnProperty('min')) {
     inp.setAttribute("min", data.min);
   }
@@ -1227,7 +1241,6 @@ function getCurrentMatch() {
 }
 
 function updateMatchStart(event) {
-  console.log(event.target);
   if ((getCurrentMatch() == "") ||
     (!teams)) {
     console.log("No match or team data.");
