@@ -183,7 +183,7 @@ function addCounter(table, idx, name, data) {
   inp.setAttribute("style", "background-color: black; color: white;border: none; text-align: center;");
   inp.setAttribute("value", 0);
   inp.setAttribute("size", 2);
-  inp.setAttribute("maxLength", 2);
+  inp.setAttribute("maxLength", 5);
   cell2.appendChild(inp);
 
   var button2 = document.createElement("input");
