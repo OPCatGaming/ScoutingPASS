@@ -6,20 +6,20 @@ var config_data = `
   "checkboxAs": "10",
   "prematch": [
     { "name": "Scouter's Name",
-      "code": "scout-name",
+      "code": "s",
       "type": "text",
       "size": 5,
       "maxSize": 5,
       "required": "true"
     },
     { "name": "Event",
-      "code": "event",
+      "code": "e",
       "type": "text",
       "defaultValue": "2023tnkn",
       "required": "true"
     },
     { "name": "Match Type",
-      "code": "match-type",
+      "code": "l",
       "type": "radio",
       "choices": {
         "quals": "Quals<br>",
@@ -30,14 +30,14 @@ var config_data = `
       "required": "true"
     },
     { "name": "Match #",
-      "code": "match-num",
+      "code": "m",
       "type": "counter",
       "min": 1,
       "max": 150,
       "required": "true"
     },
     { "name": "Alliance Color",
-      "code": "alliance-color",
+      "code": "ac",
       "type": "radio",
       "choices": {
         "red": "Red",
@@ -46,13 +46,13 @@ var config_data = `
       "required":"true"
     },
     { "name": "Team #",
-      "code": "team-num",
+      "code": "t",
       "type": "counter",
       "min": 1,
       "max": 99999
     },
     { "name": "Auto Start Position",
-      "code": "auto-start",
+      "code": "as",
       "type": "clickable_image",
       "filename": "2024/field_image.png",
       "clickRestriction": "one",
