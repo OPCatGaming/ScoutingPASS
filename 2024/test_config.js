@@ -6,38 +6,38 @@ var config_data = `
   "checkboxAs": "10",
   "prematch": [
     { "name": "Scouter's Name",
-      "code": "s",
+      "code": "scout-name",
       "type": "text",
       "size": 5,
       "maxSize": 5,
       "required": "true"
     },
     { "name": "Event",
-      "code": "e",
+      "code": "event",
       "type": "text",
       "defaultValue": "2023tnkn",
       "required": "true"
     },
-    { "name": "Match Level",
-      "code": "l",
+    { "name": "Match Type",
+      "code": "match-type",
       "type": "radio",
       "choices": {
-        "qm": "Quals<br>",
-        "sf": "Semifinals<br>",
-        "f": "Finals"
+        "quals": "Quals<br>",
+        "semis": "Semifinals<br>",
+        "finals": "Finals"
       },
-      "defaultValue": "qm",
+      "defaultValue": "quals",
       "required": "true"
     },
     { "name": "Match #",
-      "code": "m",
+      "code": "match-num",
       "type": "counter",
       "min": 1,
       "max": 150,
       "required": "true"
     },
     { "name": "Alliance Color",
-      "code": "ac",
+      "code": "alliance-color",
       "type": "radio",
       "choices": {
         "red": "Red",
@@ -46,13 +46,13 @@ var config_data = `
       "required":"true"
     },
     { "name": "Team #",
-      "code": "t",
+      "code": "team-num",
       "type": "counter",
       "min": 1,
       "max": 99999
     },
     { "name": "Auto Start Position",
-      "code": "as",
+      "code": "auto-start",
       "type": "clickable_image",
       "filename": "2024/field_image.png",
       "clickRestriction": "one",
