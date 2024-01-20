@@ -467,13 +467,12 @@ function addText(table, idx, name, data) {
 
 function onChangeRange(event, updateMStart = false) {
     let range = event.target;
-    console.log(event.target.value);
-    let numText = Number(range.text);
+    let numText = Number(range.value);
     if (range.min > numText) {
-      event.target.text = range.min;
+      event.target.value = range.min;
     }
     if (range.max < numText) {
-      event.target.text = range.max;
+      event.target.value = range.max;
     }
 
     if (updateMStart) { updateMatchStart(event); }
