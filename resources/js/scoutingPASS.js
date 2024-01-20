@@ -465,6 +465,19 @@ function addText(table, idx, name, data) {
   return idx + 1
 }
 
+function onChangeRange(event, updateMStart = false) {
+    let range = event.target;
+    let numText = Number(range.text);
+    if (range.min > numText) {
+      event.target.text = range.min;
+    }
+    if (range.max < numText) {
+      event.target.text = range.max;
+    }
+
+    if (updateMStart) { updateMatchStart(event); }
+  }
+
 function addNumber(table, idx, name, data) {
   var row = table.insertRow(idx);
   var cell1 = row.insertCell(0);
@@ -487,24 +500,9 @@ function addNumber(table, idx, name, data) {
   } else {
     inp.setAttribute("name", data.code);
   }
-
-  function onChangeRange(event) {
-    let range = event.target;
-    let numText = Number(range.text);
-    if (range.min > numText) {
-      event.target.text = range.min;
-    }
-    if (range.max < numText) {
-      event.target.text = range.max;
-    }
-    
-    updateMatchStart(event);
-  }
-  
   if (data.hasOwnProperty('utype') && (data.utype == 'match' || data.utype == 'team')) {
-    inp.setAttribute("onchange", "onChangeRange(event)");
+    inp.setAttribute("onchange", "onChangeRange(event, true)");
   }
-  
   if (data.hasOwnProperty('min')) {
     inp.setAttribute("min", data.min);
   }
