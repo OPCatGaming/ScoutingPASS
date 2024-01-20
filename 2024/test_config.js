@@ -34,7 +34,7 @@ var config_data = `
     },
     { "name": "Match #",
       "code": "m",
-      "type": "counter",
+      "type": "number",
       "utype": "match",
       "min": 1,
       "max": 150,
@@ -52,7 +52,7 @@ var config_data = `
     },
     { "name": "Team #",
       "code": "t",
-      "type": "counter",
+      "type": "number",
       "utype": "team",
       "min": 1,
       "max": 99999
