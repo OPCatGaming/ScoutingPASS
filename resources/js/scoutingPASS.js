@@ -491,13 +491,13 @@ function addNumber(table, idx, name, data) {
     console.log("aoijawoidjaoijwdoijawwd");
     if (data.utype == 'team') {
       inp.onchange = (e) => {
-        console.log(inp.text);
+        console.log(e.target);
         updateMatchStart(event);
       };
     }
     if (data.utype == 'match') {
       inp.onchange = () => {
-        console.log(inp.text);
+        console.log(e.target);
         updateMatchStart(event);
       };
     }
