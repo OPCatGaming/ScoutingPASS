@@ -487,8 +487,8 @@ function addNumber(table, idx, name, data) {
   } else {
     inp.setAttribute("name", data.code);
   }
-  if ((data.type == 'team') ||
-    (data.type == 'match')) {
+  if (data.hasOwnProperty('utype') && 
+      ((data.utype == 'team') || (data.utype == 'match'))) {
     inp.setAttribute("onchange", "updateMatchStart(event)");
   }
   if (data.hasOwnProperty('min')) {
