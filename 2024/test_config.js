@@ -37,15 +37,11 @@ var config_data = `
       "required": "true"
     },
     { "name": "Robot",
-      "code": "r",
+      "code": "aColor",
       "type": "radio",
       "choices": {
-        "r1": "Red-1",
-        "b1": "Blue-1<br>",
-        "r2": "Red-2",
-        "b2": "Blue-2<br>",
-        "r3": "Red-3",
-        "b3": "Blue-3"
+        "red": "Red",
+        "blue": "Blue<br>"
       },
       "required":"true"
     },
