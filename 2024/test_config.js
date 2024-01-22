@@ -15,7 +15,7 @@ var config_data = `
     },
     { "name": "Event",
       "code": "event",
-      "type": "text",
+      "type": "dropdown",
       "utype": "event",
       "defaultValue": "2023tnkn",
       "required": "true"
