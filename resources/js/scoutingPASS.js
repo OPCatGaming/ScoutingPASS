@@ -15,6 +15,8 @@ var pitScouting = false;
 var checkboxAs = 'YN';
 var mouseDownCanvas = false;
 
+var yearEvents = null;
+
 // Options
 var options = {
   correctLevel: QRCode.CorrectLevel.L,
@@ -632,7 +634,15 @@ function addDropdown(table, idx, name, data) {
   if (data.utype == 'event') {
     dropdown.setAttribute("onchange", "updateMatchTeamVals(event)");
     // Auto initialize all event choices here;
-    let events = null;
+    yearEvents.forEach(eventData => {
+        var inp = document.createElement("option");
+        inp.setAttribute("id", "input_" + data.code + "_" + eventData.key);
+        
+        inp.setAttribute("value", eventData.key);
+        inp.textContent = eventData.name;
+        dropdown.appendChild(inp);
+    });
+    
   } else {
     if (data.hasOwnProperty('choices')) {
       keys = Object.keys(data.choices);
@@ -1467,16 +1477,7 @@ function copyData(){
 }
 
 window.onload = async function () {
-  await getEvents(2024).then((eventData) => {
-    console.log(eventData);
-    
-    // var inp = document.createElement("option");
-    // inp.setAttribute("id", "input_" + data.code + "_" + eventData.key);
-
-    // inp.setAttribute("value", eventData.key);
-    // inp.textContent = eventData.name;
-    // dropdown.appendChild(inp);
-  });
+  await getEvents(2024).then(eventData => yearEvents = eventData);
   
   let ret = configure();
   if (ret != -1) {
