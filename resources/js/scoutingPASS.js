@@ -610,7 +610,7 @@ function updateMatchTeamVals(event) {
   */
 }
 
-async function addDropdown(table, idx, name, data) {
+function addDropdown(table, idx, name, data) {
   var row = table.insertRow(idx);
   var cell1 = row.insertCell(0);
   cell1.classList.add("title");
@@ -632,15 +632,7 @@ async function addDropdown(table, idx, name, data) {
   if (data.utype == 'event') {
     dropdown.setAttribute("onchange", "updateMatchTeamVals(event)");
     // Auto initialize all event choices here;
-    let events = await getEvents(2024);
-    events.then((eventData) => {
-      var inp = document.createElement("option");
-      inp.setAttribute("id", "input_" + data.code + "_" + eventData.key);
-
-      inp.setAttribute("value", eventData.key);
-      inp.textContent = eventData.name;
-      dropdown.appendChild(inp);
-    });
+    let events = null;
   } else {
     if (data.hasOwnProperty('choices')) {
       keys = Object.keys(data.choices);
@@ -709,7 +701,7 @@ function addCheckbox(table, idx, name, data) {
   return idx + 1;
 }
 
-async function addElement(table, idx, data) {
+function addElement(table, idx, data) {
   var type = null;
   var name = 'Default Name';
   if (data.hasOwnProperty('name')) {
@@ -754,7 +746,7 @@ async function addElement(table, idx, data) {
   return idx
 }
 
-async function configure() {
+function configure() {
   try {
     var mydata = JSON.parse(config_data);
   } catch (err) {
@@ -1475,9 +1467,20 @@ function copyData(){
 }
 
 window.onload = async function () {
+  await getEvents(2024).then((eventData) => {
+    console.log(eventData);
+    
+    // var inp = document.createElement("option");
+    // inp.setAttribute("id", "input_" + data.code + "_" + eventData.key);
+
+    // inp.setAttribute("value", eventData.key);
+    // inp.textContent = eventData.name;
+    // dropdown.appendChild(inp);
+  });
+  
   let ret = configure();
   if (ret != -1) {
-    
+
     this.drawFields();
     if (enableGoogleSheets) {
       console.log("Enabling Google Sheets.");
