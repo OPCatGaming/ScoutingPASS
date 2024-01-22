@@ -26,7 +26,7 @@ function getAPIDataFromURL(url) {
 		xmlhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				var response = this.responseText;
-				return JSON.parse(response);
+				console.log(JSON.parse(response));
 			}
 		};
 		// Send request
