@@ -3,6 +3,7 @@
 // TBAInterface funcitons to pull data from TheBlueAlliance.com
 var teams = null;
 var schedule = null;
+var parsedData = null;
 var authKey = "uTHeEfPigDp9huQCpLNkWK7FBQIb01Qrzvt4MAjh9z2WQDkrsvNE77ch6bOPvPb6";
 
 function getEvents(year) {
@@ -18,7 +19,6 @@ function getMatches(eventCode) {
 }
 
 function getAPIDataFromURL(url) {
-	let parsedData = null;
 	if (authKey) {
 		var xmlhttp = new XMLHttpRequest();
 		var url = url;
@@ -33,6 +33,6 @@ function getAPIDataFromURL(url) {
 		// Send request
 		xmlhttp.send();
 	}
-	console.log(parsedData)
+	console.log(parsedData);
 	return parsedData;
 }
