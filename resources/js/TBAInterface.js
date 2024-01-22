@@ -7,15 +7,15 @@ var parsedData = null;
 var authKey = "uTHeEfPigDp9huQCpLNkWK7FBQIb01Qrzvt4MAjh9z2WQDkrsvNE77ch6bOPvPb6";
 
 function getEvents(year) {
-	return getAPIDataFromURL("https://www.thebluealliance.com/api/v3/events/" + year + "/simple");
+	getAPIDataFromURL("https://www.thebluealliance.com/api/v3/events/" + year + "/simple");
 }
 
 function getTeams(eventCode) {
-	return getAPIDataFromURL("https://www.thebluealliance.com/api/v3/event/" + eventCode + "/teams/simple");
+	getAPIDataFromURL("https://www.thebluealliance.com/api/v3/event/" + eventCode + "/teams/simple");
 }
 
 function getMatches(eventCode) {
-	return getAPIDataFromURL("https://www.thebluealliance.com/api/v3/event/" + eventCode + "/matches/simple");
+	getAPIDataFromURL("https://www.thebluealliance.com/api/v3/event/" + eventCode + "/matches/simple");
 }
 
 function getAPIDataFromURL(url) {
@@ -34,5 +34,4 @@ function getAPIDataFromURL(url) {
 		xmlhttp.send();
 	}
 	console.log(parsedData);
-	return parsedData;
 }
