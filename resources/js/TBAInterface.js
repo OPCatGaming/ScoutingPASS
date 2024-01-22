@@ -1,3 +1,5 @@
+// API Docs: https://www.thebluealliance.com/apidocs/v3
+
 // TBAInterface funcitons to pull data from TheBlueAlliance.com
 var teams = null;
 var schedule = null;
