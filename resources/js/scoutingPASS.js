@@ -645,11 +645,11 @@ function addDropdown(table, idx, name, data) {
         dropdown.appendChild(inp);
       });
     }
-  }
 
-  if (data.hasOwnProperty('defaultValue')) {
-    dropdown.setAttribute("value", data.defaultValue);
-    dropdown.selectedIndex = dropdown.options.indexOf(data.defaultValue);
+    if (data.hasOwnProperty('defaultValue')) {
+      dropdown.setAttribute("value", data.defaultValue);
+      dropdown.selectedIndex = dropdown.options.indexOf(data.defaultValue);
+    }
   }
 
   if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
