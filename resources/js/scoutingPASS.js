@@ -649,7 +649,7 @@ function addDropdown(table, idx, name, data) {
 
   if (data.hasOwnProperty('defaultValue')) {
     dropdown.setAttribute("value", data.defaultValue);
-    dropdown.selectedIndex = dropdowns.options.indexOf(data.defaultValue);
+    dropdown.selectedIndex = dropdown.options.indexOf(data.defaultValue);
   }
 
   if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
