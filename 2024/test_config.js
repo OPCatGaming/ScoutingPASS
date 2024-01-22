@@ -54,13 +54,13 @@ var config_data = `
       "type": "dropdown",
       "utype": "team",
       "choices": {
-        "t1": team1,
-        "t2": team2,
-        "t3": team3,
-        "t4": team4,
-        "t5": team5,
-        "t6": team6,
-      }
+        "t1": "team1",
+        "t2": "team2",
+        "t3": "team3",
+        "t4": "team4",
+        "t5": "team5",
+        "t6": "team6"
+      },
       "required": "true"
     },
     { "name": "Auto Start Position",
