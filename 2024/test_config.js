@@ -46,7 +46,7 @@ var config_data = `
       "utype": "robot",
       "choices": {
         "red": "Red",
-        "blue": "Blue<br>"
+        "blue": "Blue"
       },
       "required":"true"
     },
