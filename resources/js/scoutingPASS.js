@@ -640,6 +640,12 @@ function addDropdown(table, idx, name, data) {
     dropdown.selectedIndex = dropdowns.options.indexOf(data.defaultValue);
   }
 
+  if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
+    dropdown.setAttribute("name", data.gsCol);
+  } else {
+    dropdown.setAttribute("name", data.code);
+  }
+
   cell2.appendChild(dropdown);
   
   return idx + 1;
