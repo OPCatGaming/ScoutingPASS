@@ -859,11 +859,8 @@ function validateData() {
   var errStr = "";
   for (rf of requiredFields) {
     var thisRF = document.forms.scoutingForm[rf];
-    console.log(rf);
-    console.log(thisRF);
-    
     if (thisRF.value == "[]" || thisRF.value.length == 0) {
-      if (rf == "as") {
+      if (rf == "auto_start") {
         rftitle = "Auto Start Position"
       } else {
         thisInputEl = thisRF instanceof RadioNodeList ? thisRF[0] : thisRF;
@@ -1153,8 +1150,6 @@ function drawFields(name) {
 function onFieldClick(event) {
   let target = event.target;
   let base = getIdBase(target.id);
-
-  console.log("a");
   
   //Resolution height and width (e.g. 52x26)
   let resX = 12;
