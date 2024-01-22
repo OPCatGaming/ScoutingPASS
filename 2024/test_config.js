@@ -7,7 +7,7 @@ var config_data = `
   "prematch": [
     { "name": "Scouter's Name",
       "code": "scout_name",
-      "type": "text",
+      "type": "cycle",
       "utype": "scouter",
       "size": 5,
       "maxSize": 10,
