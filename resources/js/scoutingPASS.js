@@ -594,6 +594,22 @@ function addRadio(table, idx, name, data) {
   return idx + 1;
 }
 
+function updateMatchTeamVals(event) {
+  console.log(getEvents(2024));
+  /*
+  let ece = document.getElementById("input_event");
+    let ec = null;
+    if (ece != null) {
+      ec = ece.value;
+    }
+    if (ec != null) {
+      getTeams(ec);
+      getSchedule(ec);
+      console.log("Loaded teams and schedule!");
+    }
+  */
+}
+
 function addDropdown(table, idx, name, data) {
   var row = table.insertRow(idx);
   var cell1 = row.insertCell(0);
@@ -614,7 +630,7 @@ function addDropdown(table, idx, name, data) {
   cell2.appendChild(dropdown);
   
   if (data.utype == 'event') {
-    dropdown.setAttribute("onchange", "() => console.log('a')");
+    dropdown.setAttribute("onchange", "updateMatchTeamVals(event)");
   }
   
   if (data.hasOwnProperty('choices')) {
@@ -1453,16 +1469,6 @@ function copyData(){
 window.onload = function () {
   let ret = configure();
   if (ret != -1) {
-    let ece = document.getElementById("input_event");
-    let ec = null;
-    if (ece != null) {
-      ec = ece.value;
-    }
-    if (ec != null) {
-      getTeams(ec);
-      getSchedule(ec);
-      console.log("Loaded teams and schedule!");
-    }
     this.drawFields();
     if (enableGoogleSheets) {
       console.log("Enabling Google Sheets.");
