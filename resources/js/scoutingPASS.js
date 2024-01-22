@@ -632,7 +632,8 @@ function addDropdown(table, idx, name, data) {
   if (data.utype == 'event') {
     dropdown.setAttribute("onchange", "updateMatchTeamVals(event)");
     // Auto initialize all event choices here;
-    let events = getEvents(2024).then((eventData) => {
+    let events = await getEvents(2024);
+    events.then((eventData) => {
       var inp = document.createElement("option");
       inp.setAttribute("id", "input_" + data.code + "_" + eventData.key);
 
