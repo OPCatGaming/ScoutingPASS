@@ -628,8 +628,8 @@ function addDropdown(table, idx, name, data) {
       var inp = document.createElement("option");
       inp.setAttribute("id", "input_" + data.code + "_" + c);
       
-      inp.setAttribute("value", "AWDIJAWD");
-      inp.textContent = "AOIJWDOIAW";
+      inp.setAttribute("value", c);
+      inp.textContent = data.choices[c];
       dropdown.appendChild(inp);
     });
   }
