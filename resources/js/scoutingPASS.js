@@ -613,9 +613,11 @@ function updateMatchTeamVals() {
   let eventDropdown = document.getElementById("input_event");
 
   if (allianceCol.value && matchNum.value && eventTeams != null) {
+    console.log(eventDropdown.value);
     getMatches(eventDropdown.value).then(matchData => {
       console.log(matchData);
-      let team_keys = matchData[matchNum.value - 1].alliances[allianceCol.value].team_keys;
+      //Array.from(teams).forEach(team => ret = team.key == teamKey ? team.nickname : ret);
+      //let team_keys = matchData[matchNum.value - 1].alliances[allianceCol.value].team_keys;
 
     });
   }
