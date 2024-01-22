@@ -17,7 +17,6 @@ var config_data = `
       "code": "event",
       "type": "dropdown",
       "utype": "event",
-      "defaultValue": "2023tnkn",
       "required": "true"
     },
     { "name": "Match Type",
@@ -52,10 +51,17 @@ var config_data = `
     },
     { "name": "Team #",
       "code": "team_num",
-      "type": "number",
+      "type": "dropdown",
       "utype": "team",
-      "min": 1,
-      "max": 99999
+      "choices": {
+        "t1": team1,
+        "t2": team2,
+        "t3": team3,
+        "t4": team4,
+        "t5": team5,
+        "t6": team6,
+      }
+      "required": "true"
     },
     { "name": "Auto Start Position",
       "code": "auto_start",

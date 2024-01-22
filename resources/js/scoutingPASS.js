@@ -597,19 +597,10 @@ function addRadio(table, idx, name, data) {
 }
 
 function updateMatchTeamVals(event) {
-  console.log(getEvents(2024));
-  /*
-  let ece = document.getElementById("input_event");
-    let ec = null;
-    if (ece != null) {
-      ec = ece.value;
-    }
-    if (ec != null) {
-      getTeams(ec);
-      getSchedule(ec);
-      console.log("Loaded teams and schedule!");
-    }
-  */
+  let teamDropdown = document.getElementById("input_team_num");
+  let matchNum = document.getElementById("input_match_num");
+  console.log(teamDropdown.value);
+  console.log(matchNum.value);
 }
 
 function addDropdown(table, idx, name, data) {
@@ -634,7 +625,7 @@ function addDropdown(table, idx, name, data) {
   if (data.utype == 'event') {
     dropdown.setAttribute("onchange", "updateMatchTeamVals(event)");
     // Auto initialize all event choices here;
-    yearEvents.forEach(eventData => {
+    yearEvents.sort().forEach(eventData => {
         var inp = document.createElement("option");
         inp.setAttribute("id", "input_" + data.code + "_" + eventData.key);
         
@@ -642,7 +633,7 @@ function addDropdown(table, idx, name, data) {
         inp.textContent = eventData.name;
         dropdown.appendChild(inp);
     });
-    
+
   } else {
     if (data.hasOwnProperty('choices')) {
       keys = Object.keys(data.choices);
