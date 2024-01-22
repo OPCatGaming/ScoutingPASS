@@ -1469,6 +1469,8 @@ function copyData(){
 window.onload = function () {
   let ret = configure();
   if (ret != -1) {
+    console.log(getEvents(2024));
+    
     this.drawFields();
     if (enableGoogleSheets) {
       console.log("Enabling Google Sheets.");
