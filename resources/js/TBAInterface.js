@@ -3,19 +3,18 @@
 // TBAInterface funcitons to pull data from TheBlueAlliance.com
 var teams = null;
 var schedule = null;
-var parsedData = null;
 var authKey = "uTHeEfPigDp9huQCpLNkWK7FBQIb01Qrzvt4MAjh9z2WQDkrsvNE77ch6bOPvPb6";
 
 function getEvents(year) {
-	getAPIDataFromURL("https://www.thebluealliance.com/api/v3/events/" + year + "/simple");
+	return getAPIDataFromURL("https://www.thebluealliance.com/api/v3/events/" + year + "/simple");
 }
 
 function getTeams(eventCode) {
-	getAPIDataFromURL("https://www.thebluealliance.com/api/v3/event/" + eventCode + "/teams/simple");
+	return getAPIDataFromURL("https://www.thebluealliance.com/api/v3/event/" + eventCode + "/teams/simple");
 }
 
 function getMatches(eventCode) {
-	getAPIDataFromURL("https://www.thebluealliance.com/api/v3/event/" + eventCode + "/matches/simple");
+	return getAPIDataFromURL("https://www.thebluealliance.com/api/v3/event/" + eventCode + "/matches/simple");
 }
 
 function getAPIDataFromURL(url) {
@@ -27,11 +26,10 @@ function getAPIDataFromURL(url) {
 		xmlhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				var response = this.responseText;
-				parsedData = JSON.parse(response);
+				return JSON.parse(response);
 			}
 		};
 		// Send request
 		xmlhttp.send();
 	}
-	console.log(parsedData);
 }
