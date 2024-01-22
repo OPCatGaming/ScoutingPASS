@@ -618,7 +618,7 @@ function updateMatchTeamVals() {
       console.log(matchData);
       //Array.from(teams).forEach(team => ret = team.key == teamKey ? team.nickname : ret);
       //let team_keys = matchData[matchNum.value - 1].alliances[allianceCol.value].team_keys;
-
+      //oiajwdoijaiowd
     });
   }
 }
