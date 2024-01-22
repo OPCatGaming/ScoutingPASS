@@ -622,9 +622,6 @@ function addDropdown(table, idx, name, data) {
     dropdown.setAttribute("onchange", "() => console.log('a')");
   }
   
-  if (data.hasOwnProperty('defaultValue')) {
-    // Set defualt val of dropdown heer
-  }
   if (data.hasOwnProperty('choices')) {
     keys = Object.keys(data.choices);
     keys.forEach(c => {
@@ -632,7 +629,7 @@ function addDropdown(table, idx, name, data) {
       inp.setAttribute("id", "input_" + data.code + "_" + c);
       
       inp.setAttribute("value", "AWDIJAWD");
-      inp.setAttribute("text", "AOIJWDOIAW");
+      inp.textContent = "AOIJWDOIAW";
       dropdown.appendChild(inp);
     });
   }
