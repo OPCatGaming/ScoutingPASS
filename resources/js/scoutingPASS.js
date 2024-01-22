@@ -631,20 +631,21 @@ function addDropdown(table, idx, name, data) {
   
   if (data.utype == 'event') {
     dropdown.setAttribute("onchange", "updateMatchTeamVals(event)");
+    // Auto initialize all event choices here;
+    let events = getEvents(2024);
+  } else {
+    if (data.hasOwnProperty('choices')) {
+      keys = Object.keys(data.choices);
+      keys.forEach(c => {
+        var inp = document.createElement("option");
+        inp.setAttribute("id", "input_" + data.code + "_" + c);
+        
+        inp.setAttribute("value", c);
+        inp.textContent = data.choices[c];
+        dropdown.appendChild(inp);
+      });
+    }
   }
-  
-  if (data.hasOwnProperty('choices')) {
-    keys = Object.keys(data.choices);
-    keys.forEach(c => {
-      var inp = document.createElement("option");
-      inp.setAttribute("id", "input_" + data.code + "_" + c);
-      
-      inp.setAttribute("value", c);
-      inp.textContent = data.choices[c];
-      dropdown.appendChild(inp);
-    });
-  }
-  
 
   if (data.hasOwnProperty('defaultValue')) {
     dropdown.setAttribute("value", data.defaultValue);
@@ -1469,7 +1470,12 @@ function copyData(){
 window.onload = function () {
   let ret = configure();
   if (ret != -1) {
+    console.log("-------------- events --------------")
     console.log(getEvents(2024));
+    console.log("-------------- teams --------------")
+    console.log(getTeams("2023tnkn"));
+    console.log("-------------- matches --------------")
+    console.log(getMatches("2023tnkn"));
     
     this.drawFields();
     if (enableGoogleSheets) {

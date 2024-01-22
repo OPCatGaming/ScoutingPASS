@@ -22,11 +22,11 @@ var config_data = `
     },
     { "name": "Match Type",
       "code": "match_type",
-      "type": "radio",
+      "type": "dropdown",
       "utype": "level",
       "choices": {
-        "quals": "Quals<br>",
-        "semis": "Semifinals<br>",
+        "quals": "Quals",
+        "semis": "Semifinals",
         "finals": "Finals"
       },
       "defaultValue": "quals",
