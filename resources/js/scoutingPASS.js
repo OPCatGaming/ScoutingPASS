@@ -632,7 +632,14 @@ function addDropdown(table, idx, name, data) {
   if (data.utype == 'event') {
     dropdown.setAttribute("onchange", "updateMatchTeamVals(event)");
     // Auto initialize all event choices here;
-    let events = getEvents(2024);
+    let events = getEvents(2024).then((eventData) => {
+      var inp = document.createElement("option");
+      inp.setAttribute("id", "input_" + data.code + "_" + eventData.key);
+
+      inp.setAttribute("value", eventData.key);
+      inp.textContent = eventData.name;
+      dropdown.appendChild(inp);
+    });
   } else {
     if (data.hasOwnProperty('choices')) {
       keys = Object.keys(data.choices);
@@ -1469,12 +1476,6 @@ function copyData(){
 window.onload = function () {
   let ret = configure();
   if (ret != -1) {
-    console.log("-------------- events --------------")
-    getEvents(2024).then(data => console.log(data))
-    console.log("-------------- teams --------------")
-    getTeams("2023tnkn").then(data => console.log(data));
-    console.log("-------------- matches --------------")
-    getMatches("2023tnkn").then(data => console.log(data));
     
     this.drawFields();
     if (enableGoogleSheets) {
