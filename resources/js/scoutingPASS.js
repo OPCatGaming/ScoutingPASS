@@ -610,7 +610,7 @@ function updateMatchTeamVals(event) {
   */
 }
 
-function addDropdown(table, idx, name, data) {
+async function addDropdown(table, idx, name, data) {
   var row = table.insertRow(idx);
   var cell1 = row.insertCell(0);
   cell1.classList.add("title");
@@ -709,7 +709,7 @@ function addCheckbox(table, idx, name, data) {
   return idx + 1;
 }
 
-function addElement(table, idx, data) {
+async function addElement(table, idx, data) {
   var type = null;
   var name = 'Default Name';
   if (data.hasOwnProperty('name')) {
@@ -754,7 +754,7 @@ function addElement(table, idx, data) {
   return idx
 }
 
-function configure() {
+async function configure() {
   try {
     var mydata = JSON.parse(config_data);
   } catch (err) {
@@ -1474,7 +1474,7 @@ function copyData(){
   document.getElementById('copyButton').setAttribute('value','Copied');
 }
 
-window.onload = function () {
+window.onload = async function () {
   let ret = configure();
   if (ret != -1) {
     
