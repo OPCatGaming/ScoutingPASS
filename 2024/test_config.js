@@ -56,10 +56,7 @@ var config_data = `
       "choices": {
         "t1": "team1",
         "t2": "team2",
-        "t3": "team3",
-        "t4": "team4",
-        "t5": "team5",
-        "t6": "team6"
+        "t3": "team3"
       },
       "required": "true"
     },

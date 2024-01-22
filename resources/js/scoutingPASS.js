@@ -16,6 +16,7 @@ var checkboxAs = 'YN';
 var mouseDownCanvas = false;
 
 var yearEvents = null;
+var eventTeams = null;
 
 // Options
 var options = {
@@ -596,11 +597,28 @@ function addRadio(table, idx, name, data) {
   return idx + 1;
 }
 
-function updateMatchTeamVals(event) {
+function updateEventTeams() {
+  let eventDropdown = document.getElementById("input_event");
+
+  getTeams(eventDropdown.value).then((teamData) => {
+    eventTeams = teamData;
+    updateMatchTeamVals();
+  })
+}
+
+function updateMatchTeamVals() {
   let teamDropdown = document.getElementById("input_team_num");
   let matchNum = document.getElementById("input_match_num");
-  console.log(teamDropdown.value);
-  console.log(matchNum.value);
+  let allianceCol = document.getElementById("input_alliance_color");
+  let eventDropdown = document.getElementById("input_event");
+
+  if (allianceCol.value && matchNum.value && eventTeams != null) {
+    console.log("teams change!");
+    getMatches(eventDropdown.value).then(matchData => {
+      let team_keys = matchData[matchNum.value - 1].alliances[allianceCol.value].team_keys;
+
+    });
+  }
 }
 
 function addDropdown(table, idx, name, data) {
@@ -623,7 +641,7 @@ function addDropdown(table, idx, name, data) {
   cell2.appendChild(dropdown);
   
   if (data.utype == 'event') {
-    dropdown.setAttribute("onchange", "updateMatchTeamVals(event)");
+    dropdown.setAttribute("onchange", "updateEventTeams()");
     // Auto initialize all event choices here;
     yearEvents.sort().forEach(eventData => {
         var inp = document.createElement("option");
