@@ -1470,11 +1470,11 @@ window.onload = function () {
   let ret = configure();
   if (ret != -1) {
     console.log("-------------- events --------------")
-    console.log(getEvents(2024));
+    getEvents(2024).then(data => console.log(data))
     console.log("-------------- teams --------------")
-    console.log(getTeams("2023tnkn"));
+    getTeams("2023tnkn").then(data => console.log(data));
     console.log("-------------- matches --------------")
-    console.log(getMatches("2023tnkn"));
+    getMatches("2023tnkn").then(data => console.log(data));
     
     this.drawFields();
     if (enableGoogleSheets) {
