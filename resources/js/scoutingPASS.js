@@ -613,8 +613,8 @@ function updateMatchTeamVals() {
   let eventDropdown = document.getElementById("input_event");
 
   if (allianceCol.value && matchNum.value && eventTeams != null) {
-    console.log("teams change!");
     getMatches(eventDropdown.value).then(matchData => {
+      console.log(matchData);
       let team_keys = matchData[matchNum.value - 1].alliances[allianceCol.value].team_keys;
 
     });
