@@ -441,7 +441,7 @@ function addText(table, idx, name, data) {
     inp.setAttribute("maxLength", data.maxSize);
   }
   if (data.hasOwnProperty('defaultValue')) {
-    if (data.type == 'event') {
+    if (data.utype == 'event') {
       data.defaultValue = data.defaultValue.toLowerCase();
     }
     inp.setAttribute("value", data.defaultValue);
@@ -528,7 +528,7 @@ function addNumber(table, idx, name, data) {
     cell2.appendChild(def);
   }
 
-  if (data.type == 'team') {
+  if (data.utype == 'team') {
     idx += 1
     row = table.insertRow(idx);
     cell1 = row.insertCell(0);
@@ -554,11 +554,6 @@ function addRadio(table, idx, name, data) {
     cell1.setAttribute("title", data.tooltip);
   }
   cell2.classList.add("field");
-  // if ((data.type == 'level') ||
-  //   (data.type == 'robot')
-  // ) {
-  //   cell2.setAttribute("onchange", "updateMatchStart(event)");
-  // }
   var checked = null
   if (data.hasOwnProperty('defaultValue')) {
     checked = data.defaultValue;
@@ -618,7 +613,7 @@ function addDropdown(table, idx, name, data) {
   dropdown.setAttribute("id", "input_" + data.code);
   cell2.appendChild(dropdown);
   
-  if (data.type == 'event') {
+  if (data.utype == 'event') {
     dropdown.setAttribute("onchange", "() => console.log('a')");
   }
   
@@ -708,10 +703,7 @@ function addElement(table, idx, data) {
   }
   if (type == 'counter') {
     idx = addCounter(table, idx, name, data);
-  } else if ((data.type == 'scouter') ||
-    (data.type == 'event') ||
-    (data.type == 'text')
-  ) {
+  } else if (data.type == 'text') {
     idx = addText(table, idx, name, data);
   } else if (data.type == 'radio') {
     idx = addRadio(table, idx, name, data);
