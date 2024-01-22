@@ -3,8 +3,8 @@ var teams = null;
 var schedule = null;
 var authKey = "uTHeEfPigDp9huQCpLNkWK7FBQIb01Qrzvt4MAjh9z2WQDkrsvNE77ch6bOPvPb6";
 
-function getEvents() {
-	return getAPIDataFromURL("https://www.thebluealliance.com/api/v3/event/simple");
+function getEvents(year) {
+	return getAPIDataFromURL("https://www.thebluealliance.com/api/v3/events/" + year + "/simple");
 }
 
 function getTeams(eventCode) {
