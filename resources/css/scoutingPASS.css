@@ -45,6 +45,14 @@ html, body{
     font-size: 16px;
 }
 
+select, option {
+    max-width: 20vw;
+}
+
+canvas {
+    touch-action: none;
+}
+
 #autonHeader, #endgameHeader, #teleopHeader1, #teleopHeader2{
     color: black;
     border-color: black;
@@ -70,9 +78,9 @@ html, body{
     margin:auto;
 }
 
-.field-image {
-    margin: 2vw;
-}
+/* .field-image {
+
+} */
 
 .field-image-src{
     background-position: center;
@@ -200,7 +208,7 @@ h2{
 #prematch_table{
     font: Alexis;
     text-align: center;
-    margin:auto;
+    /* margin:auto; */
 }
 
 
@@ -219,6 +227,7 @@ h1 .even {
 table {
     border: 1px solid black;
     width: 98%;
+    border-spacing: 0px;
 }
 
 td {

@@ -6,6 +6,7 @@ var config_data = `
   "checkboxAs": "10",
   "prematch": [
     { "name": "Scouter's Name",
+      "error_msg": "Please enter the name of the scouter (you).",
       "code": "scout_name",
       "type": "text",
       "utype": "scouter",
@@ -32,6 +33,7 @@ var config_data = `
       "required": "true"
     },
     { "name": "Match #",
+      "error_msg": "Please enter the match number.",
       "code": "match_num",
       "type": "number",
       "utype": "match",
@@ -65,8 +67,10 @@ var config_data = `
       "type": "clickable_image",
       "filename": "2024/field_image.png",
       "clickRestriction": "one",
-      "allowableResponses": "1 12 13 24 25 36 37 48 49 60 61 72",
-      "shape": "circle 5 black red true"
+      "showUndo": "false",
+      "showFlip": "false",
+      "shape": "circle 5 black red true",
+      "required": "true"
     }
   ],
   "auton": [

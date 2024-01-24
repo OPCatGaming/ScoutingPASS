@@ -27,7 +27,7 @@ var options = {
 
 // Must be filled in: e=event, m=match#, l=level(q,qf,sf,f), t=team#, r=robot(r1,r2,b1..), s=scouter
 //var requiredFields = ["e", "m", "l", "t", "r", "s", "as"];
-var requiredFields = ["event", "match_num", "match_type", "alliance_color", "scout_name", "auto_start", "team_num"];
+var requiredFields = [];
 
 function addTimer(table, idx, name, data) {
   var row = table.insertRow(idx);
@@ -84,6 +84,10 @@ function addTimer(table, idx, name, data) {
     inp.classList.add("cycle");
   }
   inp.setAttribute("id", "input_" + data.code);
+  // Input info used for more precise error messages.
+  if (data.hasOwnProperty('error_msg')) {
+    inp.setAttribute("error_msg", data.error_msg);
+  }
   inp.setAttribute("type", "text");
   if (data.type != 'cycle') {
     if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
@@ -177,6 +181,10 @@ function addCounter(table, idx, name, data) {
   var inp = document.createElement("input");
   inp.classList.add("counter");
   inp.setAttribute("id", "input_" + data.code);
+  // Input info used for more precise error messages.
+  if (data.hasOwnProperty('error_msg')) {
+    inp.setAttribute("error_msg", data.error_msg);
+  }
   inp.setAttribute("type", "text");
   if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
     inp.setAttribute("name", data.gsCol);
@@ -218,7 +226,10 @@ function addCounter(table, idx, name, data) {
 }
 
 function addClickableImage(table, idx, name, data) {
+  // Set id of row to tell the validation code to show errors here.
   var row = table.insertRow(idx);
+  row.setAttribute("id", "err_visual1_" + data.code);
+
   var cell = row.insertCell(0);
   cell.setAttribute("colspan", 2);
   cell.setAttribute("style", "text-align: center;");
@@ -249,6 +260,8 @@ function addClickableImage(table, idx, name, data) {
   if (showFlip || showUndo) {
     idx += 1
     row = table.insertRow(idx);
+    row.setAttribute("id", "err_visual2_" + data.code);
+
     cell = row.insertCell(0);
     cell.setAttribute("colspan", 2);
     cell.setAttribute("style", "text-align: center;");
@@ -281,6 +294,7 @@ function addClickableImage(table, idx, name, data) {
 
   idx += 1;
   row = table.insertRow(idx);
+  row.setAttribute("id", "err_visual3_" + data.code);
   cell = row.insertCell(0);
   cell.setAttribute("colspan", 2);
   cell.setAttribute("style", "text-align: center;");
@@ -288,17 +302,17 @@ function addClickableImage(table, idx, name, data) {
 
   // Handle the mouse events on the image canvas.
   // Not very efficient, but I'm not sure if we are even going to use this one, so no need right now.
-  canvas.onmousedown = (e) => {
+  canvas.addEventListener("mousedown",(e) => {
     onFieldClick(e);
     mouseDownCanvas = true;
-  }
-  canvas.onmouseup = (e) => {
-    onFieldClick(e);
+  }, false);
+  canvas.addEventListener("mouseup",(e) => {
     mouseDownCanvas = false;
-  }
-  canvas.onmousemove = (e) => {
+  }, false);
+  canvas.addEventListener("mousemove", (e) => {
     if (mouseDownCanvas) { onFieldClick(e); }
-  }
+  }, false);
+
   
   canvas.setAttribute("class", "field-image-src");
   canvas.setAttribute("id", "canvas_" + data.code);
@@ -323,6 +337,10 @@ function addClickableImage(table, idx, name, data) {
     inp.setAttribute("name", data.code);
   }
   inp.setAttribute("id", "input_" + data.code);
+  // Input info used for more precise error messages.
+  if (data.hasOwnProperty('error_msg')) {
+    inp.setAttribute("error_msg", data.error_msg);
+  }
   inp.setAttribute("value", "[]");
   inp.setAttribute("class", "clickableImage");
 
@@ -431,6 +449,10 @@ function addText(table, idx, name, data) {
   cell2.classList.add("field");
   var inp = document.createElement("input");
   inp.setAttribute("id", "input_" + data.code);
+  // Input info used for more precise error messages.
+  if (data.hasOwnProperty('error_msg')) {
+    inp.setAttribute("error_msg", data.error_msg);
+  }
   inp.setAttribute("type", "text");
   if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
     inp.setAttribute("name", data.gsCol);
@@ -497,6 +519,10 @@ function addNumber(table, idx, name, data) {
   cell2.classList.add("field");
   var inp = document.createElement("input");
   inp.setAttribute("id", "input_" + data.code);
+  // Input info used for more precise error messages.
+  if (data.hasOwnProperty('error_msg')) {
+    inp.setAttribute("error_msg", data.error_msg);
+  }
   inp.setAttribute("type", "number");
   if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
     inp.setAttribute("name", data.gsCol);
@@ -640,6 +666,10 @@ function addDropdown(table, idx, name, data) {
 
   var dropdown = document.createElement("select");
   dropdown.setAttribute("id", "input_" + data.code);
+  // Input info used for more precise error messages.
+  if (data.hasOwnProperty('error_msg')) {
+    dropdown.setAttribute("error_msg", data.error_msg);
+  }
   cell2.appendChild(dropdown);
   
   if (data.utype == 'event') {
@@ -699,6 +729,10 @@ function addCheckbox(table, idx, name, data) {
   cell2.classList.add("field");
   var inp = document.createElement("input");
   inp.setAttribute("id", "input_" + data.code);
+  // Input info used for more precise error messages.
+  if (data.hasOwnProperty('error_msg')) {
+    inp.setAttribute("error_msg", data.error_msg);
+  }
   inp.setAttribute("type", "checkbox");
   if (enableGoogleSheets && data.hasOwnProperty('gsCol')) {
     inp.setAttribute("name", data.gsCol);
@@ -738,6 +772,11 @@ function addElement(table, idx, data) {
     idx = addText(table, idx, name, err);
     return
   }
+  // Add the field to the requiredFields array if it is required.
+  if (data.hasOwnProperty('required') && data.required.toLowerCase() == 'true') {
+    requiredFields.push(data.code);
+  }
+
   if (type == 'counter') {
     idx = addCounter(table, idx, name, data);
   } else if (data.type == 'text') {
@@ -764,6 +803,7 @@ function addElement(table, idx, data) {
   } else {
     console.log(`Unrecognized type: ${data.type}`);
   }
+
   return idx
 }
 
@@ -771,13 +811,7 @@ function configure() {
   try {
     var mydata = JSON.parse(config_data);
   } catch (err) {
-    console.log(`Error parsing configuration file`)
-    console.log(err.message)
-    console.log('Use a tool like http://jsonlint.com/ to help you debug your config file')
-    var table = document.getElementById("prematch_table")
-    var row = table.insertRow(0);
-    var cell1 = row.insertCell(0);
-    cell1.innerHTML = `Error parsing configuration file: ${err.message}<br><br>Use a tool like <a href="http://jsonlint.com/">http://jsonlint.com/</a> to help you debug your config file`
+    alert(`Error parsing configuration file: ${err.message}\n\nUse a tool like http://jsonlint.com/ to help you debug your config file`);
     return -1
   }
 
@@ -878,6 +912,7 @@ for ( rb of document.getElementsByName('alliance_color')) { rb.checked = false }
 }
 
 
+
 function getLevel(){
 return document.forms.scoutingForm.match_type.value;
 }
@@ -888,6 +923,25 @@ function validateData() {
   var errStr = "";
   for (rf of requiredFields) {
     var thisRF = document.forms.scoutingForm[rf];
+
+    let tblRows = [thisRF];
+    // Clickable images take up multiple rows, so IDs are set before hand and are used here in case of error to change thier color.
+    if (thisRF.classList.contains("clickableImage")) {
+      tblRows = [];
+      tblRows.push(document.getElementById("err_visual1_" + rf));
+      // A clickable image can sometimes not have a second row, so this is needed to prevent an error if so.
+      let maybeRow = document.getElementById("err_visual2_" + rf);
+      if (maybeRow != null) {
+        tblRows.push(maybeRow);
+      }
+      tblRows.push(document.getElementById("err_visual3_" + rf));
+    } else {
+      // Otherwise, it will just find the parent table row of the input element.
+      while (tblRows[0].tagName.toLowerCase() != "tr") {
+        tblRows[0] = tblRows[0].parentElement;
+      }
+    }
+
     if (thisRF.value == "[]" || thisRF.value.length == 0) {
       if (rf == "auto_start") {
         rftitle = "Auto Start Position"
@@ -895,8 +949,13 @@ function validateData() {
         thisInputEl = thisRF instanceof RadioNodeList ? thisRF[0] : thisRF;
         rftitle = thisInputEl.parentElement.parentElement.children[0].innerHTML.replace("&nbsp;","");
       }
-      errStr += rf + ": " + rftitle + "\n";
+      errStr += rftitle + (thisRF.getAttribute("error_msg") != null ? ": " + thisRF.getAttribute("error_msg") : "") + "\n";
+      // loop through the tables rows and highlight them red when they have errors.
+      tblRows.forEach(tblRow => tblRow.style.backgroundColor = "rgba(255, 0, 0, 0.2)");
       ret = false;
+    } else {
+      // If there are no errors on these rows, make sure they go back to their regular bg color.
+      tblRows.forEach(tblRow => tblRow.style.backgroundColor = "rgba(255, 0, 0, 0.0)");
     }
   }
   if (ret == false) {
@@ -958,24 +1017,6 @@ function getData(dataFormat) {
   }
 }
 
-// function updateQRHeader() {
-//   // let str = 'Event: !EVENT! Match: !MATCH! Robot: !ROBOT! Team: !TEAM!';
-
-//   // if (!pitScouting) {
-//   //   str = str
-//   //     .replace('!EVENT!', document.getElementById("input_e").value)
-//   //     .replace('!MATCH!', document.getElementById("input_m").value)
-//   //     .replace('!ROBOT!', document.getElementById("display_r").value)
-//   //     .replace('!TEAM!', document.getElementById("input_t").value);
-//   // } else {
-//   //   str = 'Pit Scouting - Team !TEAM!'
-//   //     .replace('!TEAM!', document.getElementById("input_t").value);
-//   // }
-
-//   // document.getElementById("display_qr-info").textContent = str;
-// }
-
-
 function qr_regenerate() {
   // Validate required pre-match date (event, match, level, robot, scouter)
   if (!pitScouting) {  
@@ -983,6 +1024,8 @@ function qr_regenerate() {
       // Don't allow a swipe until all required data is filled in
       return false
     }
+    // clear the required fields array
+    requiredFields = [];
   }
 
   // Get data
@@ -1049,13 +1092,6 @@ function clearForm() {
       if (e.checked) {
         e.checked = false
         document.getElementById("display_" + baseCode).value = ""
-      }
-      var defaultValue = document.getElementById("default_" + baseCode).value
-      if (defaultValue != "") {
-        if (defaultValue == e.value) {
-          e.checked = true
-          document.getElementById("display_" + baseCode).value = defaultValue
-        }
       }
     } else {
       if (e.type == "number" || e.type == "text" || e.type == "hidden") {
